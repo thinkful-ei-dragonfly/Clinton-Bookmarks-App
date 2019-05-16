@@ -1,130 +1,67 @@
 * {
   box-sizing: border-box;
-}
-
-h1{
-width: 543px; 
-height: 80px; 
-color: black; 
-font-family: 'Times New Roman', Times, serif;
-font-size: 59px; 
-text-align: left; 
-line-height: 1px; 
-padding: 5px; 
+  margin: auto;
 }
 
 body {
-  font-family: 'Times New Roman', Times, serif;
+  width: 100%;
+  height: auto;
+  min-width: 640px;
 }
 
-button, a{ 
-width: 162px; 
-height: 39px; 
-color: black; 
-font-family: 'Times New Roman', Times, serif; 
-font-size: 12px; 
-font-weight: normal; 
-font-style: normal; 
-text-decoration: none; 
-text-align: center; 
-background: white; 
-border: 1px solid black; 
-border-radius: 2px; 
+.main {
+  margin: auto;
+  text-align: center;
+  
 }
 
-button, a, input[type="text"] {
-  padding: 5px;
+.addForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
 }
 
-button:hover {
-  cursor: pointer;
+h1 {
+  padding: 15px;
+  text-align: center;
 }
 
-button:hover:disabled {
-  cursor: default;
+h3 {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
-select{
-  width: 162px; 
-  height: 39px; 
-  color: black; 
-  font-family: 'Times New Roman', Times, serif; 
-  font-size: 12px; 
-  font-weight: normal; 
-  font-style: normal; 
-  text-decoration: none; 
-  text-align: center; 
-  background: white; 
-  border: 1px solid black; 
-  border-radius: 2px; 
+
+
+
+#js-filter-rating {
+  padding-top: 30px; 
 }
 
-.hidden {
-  display: none;
+#js-add-bookmark {
+  visibility: hidden;
 }
 
-#bookmark-list-item {
-  width: 250px;
+.js-bookmark-list {
+  padding-top: 20px;
+  list-style-type: none;
 }
 
-.container {
-  max-width: 600px;
-  margin: 0 auto;
+.bookmark-container {
+  padding-bottom: 35px;
 }
 
-.bookmarks {
-  list-style: none;
-  padding-left: 0;
+.bookmark-container > p {
+  padding: none;
+  margin: none;
+  
 }
 
-.bookmarks > li {
-  margin-bottom: 20px;
-  border: 1px solid grey;
-  padding: 20px;
+button {
+  display: inline-block;
 }
 
-.bookmark-item{
-  display: block;
-  color: grey;
-  font-style: italic;
-  font-size: 20px;
-  margin-bottom: 15px;
-}
-
-#js-description-input{ 
-width: 381px; 
-height: 137px; 
-color: black; 
-font-family: 'Times New Roman', Times, serif; 
-font-size: 12px; 
-font-weight: normal; 
-font-style: normal; 
-text-decoration: none; 
-text-align: left;
-padding: 1px; 
-line-height: 1px; 
-background: white; 
-border: 1px solid black; 
-border-radius: 0px; 
-}
-
-.rating{
-  display: block
-}
-
-label{
-  padding:5px;
-  color:black;
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 14px;
-  margin: 10px;
-}
-
-input{
-  vertical-align: top;
-}
-
-p{
-  color: red;
-  font-size: 14px;
+.hide-field {
+  visibility: hidden;
 }

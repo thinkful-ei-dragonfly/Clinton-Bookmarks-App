@@ -1,35 +1,70 @@
 // eslint-disable-next-line no-unused-vars
-const api = (function () {
-    const BASE_URL = 'https://thinkful-list-api.herokuapp.com/clinton/bookmarks';
 
-    const getItems = function() {
-        return fetch(BASE_URL)
-            // eslint-disable-next-line indent
-        .then(response => response);
+'use strict';
+
+const api = (function () {
+
+    // base URL for bookmarks server end point
+    const BASE_URL = 'https://thinkful-list-api.herokuapp.com/Clinton/bookmarks';
+ 
+    function fetchHandler(...params) {
+        let error;
+        return fetch(...params)
+            .then(response => {
+                if (!response.ok) {
+                    error = { code: response.status };
+                    if (!response.headers.get('content-type').includes('json')) {
+                        error.message = response.statusText;
+                        return Promise.reject(error);
+                    }
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (error) {
+                    error.message = data.message;
+                    return Promise.reject(error);
+                }
+                return data;
+            });
     }
 
-    const createItems = function(bookmark) {
-        const newBookmark = JSON.stringify(bookmark);
-        const options = {
-            method: 'POST',
-            headers: new Headers({ 'Content-Type': 'application/json' }),
-            body: newBookmark,
-        };
-        return fetch(BASE_URL, options)
-            .then(response => response);
-    };
+    function getBookmarks() {
+        return fetchHandler(BASE_URL);
+    }
 
-    function deleteItems(id) {
-        const options = {
-            method: 'DELETE',
-        };
-        return fetch(`${BASE_URL}/${id}`, options)
-            .then(response => response);
-    };
+    function createBookmark(newObj) {
+
+        const headersObj = new Headers({
+            'content-type': 'application/json',
+        });
+
+        const postBookmarkURL = BASE_URL;
+        const body = JSON.stringify(newObj);
+
+        return fetchHandler(postBookmarkURL, {
+            method: 'POST',
+            headers: headersObj,
+            body,
+        });
+    }
+
+    function deleteBookmark(id) {
+
+        try {
+            return fetchHandler(BASE_URL + '/' + id, { method: 'DELETE' }); 
+        } catch (e) {
+            console.log(e.message);
+        }
+
+
+    }
 
     return {
-        getItems,
-        createItems,
-        deleteItems,
+        getBookmarks,
+        createBookmark,
+        deleteBookmark,
     };
+
+
 })();

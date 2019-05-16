@@ -5,45 +5,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Bookmarks</title>
-    <link rel="stylesheet" href="styles/index.css">
+    <title>Bookmark List</title>
+    <meta name="description"
+        content="A personal list for you to manage a list of your bookmarks, including titles, ratings, descriptions, and links.">
+    <link rel="text/stylesheet" href="style/index.css">
 </head>
 
 <body>
-    <h1>My Bookmarks</h1>
-    <section id="js-add-bookmark-form">
-        <select name="rating-filter" id="js-rating-filter">
-            <option>Sort by rating</option>
-            <option value="1">1 Star</option>
-            <option value="2">2 star</option>
-            <option value="3">3 star</option>
-            <option value="4">4 star</option>
-            <option value="5">5 star</option>
-        </select>
-        <form id='js-add-bookmark' class=''>
-            <input type="text" name="title" id="js-title" placeholder="Title">
-            <input type="url" name="url" id="js-url" placeholder="URL">
-            <div>
-                <input type="text" name="description" id="js-description" placeholder="Description here">
-                <input class="rating" type="radio" name="rating" value="1">1 stars</input>
-                <input class="rating" type="radio" name="rating" value="2">2 stars</input>
-                <input class="rating" type="radio" name="rating" value="3">3 stars</input>
-                <input class="rating" type="radio" name="rating" value="4">4 stars</input>
-                <input class="rating" type="radio" name="rating" value="5">5 stars</input>
-            </div>
-            <button type="submit">Submit</button>
-    </section>
 
-    <ul class="bookmarks" id="js-bookmarks">
+    <div class="error-container"> </div>
 
-    </ul>
+    <header role="banner">
+        <h1>My Bookmarks</h1>
+    </header>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="scripts/api.js"></script>
-    <script type="text/javascript" src="scripts/store.js"></script>
-    <script type="text/javascript" src="scripts/bookmarks.js"></script>
-    <script type="text/javascript" src="scripts/index.js"></script>
+    <main role="main" class="main">
 
+        <h3 role="banner">Manage bookmarks</h3>
+        <!-- <form id="js-add-bookmark" method="get">
+      <button name="add-bookmark" type="button" value="add-bookmark">Add Bookmark</button>
+    </form> -->
+
+
+        <form class="addForm" id="js-myForm" role="form" name="input-form" action="submit">
+
+            <label for="title">Title:</label>
+            <input type="text" name="title" id="js-title-input" required>
+
+            <label for="url">URL:</label>
+            <input type="text" name="url" id="js-hyperlink-input" required>
+
+            <label for="description">Description:</label>
+            <input type="text" name="desc" id="js-description-input">
+
+            <!-- starting to mess with no rating value options -->
+            <label for="minimum-rating">Rating</label>
+            <select name="rating" id="js-rating">
+                <option></option>
+                <option value="1">1 star</option>
+                <option value="2">2 stars</option>
+                <option value="3">3 stars</option>
+                <option value="4">4 stars</option>
+                <option value="5">5 stars</option>
+            </select>
+
+            <input type="submit" value="Add bookmark to list!">
+        </form>
+        <p><br><br><br></p>
+        <label for="minimum-rating">Filter by rating</label>
+        <form id="js-filter-rating" action="submit">
+            <select name="filterRating" id="js-rating">
+                <option value="0">rating</option>
+                <option value="1">1 star</option>
+                <option value="2">2 stars</option>
+                <option value="3">3 stars</option>
+                <option value="4">4 stars</option>
+                <option value="5">5 stars</option>
+            </select>
+        </form>
+
+        <section role="region" class="results">
+            <ul class="js-bookmark-list">
+
+            </ul>
+        </section>
+        </div>
+
+
+
+        <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="scripts/Bookmark.js"></script>
+        <script type="text/javascript" src="scripts/store.js"></script>
+        <script type='text/javascript' src='scripts/api.js'></script>
+        <script type="text/javascript" src="scripts/bookmarkList.js"></script>
+        <script type="text/javascript" src="scripts/index.js"></script>
 </body>
+
 </html>

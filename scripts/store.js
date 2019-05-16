@@ -1,47 +1,60 @@
+/* global Bookmark */
+
+'use strict';
+
+// eslint-disable-next-line no-unused-vars
 const store = (function () {
 
-    function findBookmarkById(id) {
-        return store.bookmarks.find(book => book.id === id);
-    }
+    const addBookmark = function (dataResponse) {
 
-    function findAndDelete(id) {
-        this.bookmarks = this.bookmarks.filter(book => book.id !== id);
-    }
+        try {
+            this.bookmarks.push({
+                id: dataResponse.id,
+                title: dataResponse.title,
+                rating: dataResponse.rating,
+                url: dataResponse.url,
+                desc: dataResponse.desc,
+                isDisplayDetailed: false,
+            });
 
-    function addBookmark(bookmark) {
-        bookmark.fullView = false;
-        this.bookmarks.push(bookmark);
-    }
+        } catch (e) {
+            console.log(e.message);
+        }
+    };
 
-    function toggleAddNew() {
-        this.addingNew = !this.addingNew;
-    }
+    const findById = function (id) {
+        return this.bookmarks.find(bookmark => bookmark.id === id);
+    };
 
-    function changeRatingFilter(rating) {
-        this.ratingFilter = rating;
-    }
+    const findAndToggleDetailed = function (id) {
+        const bookmark = this.findById(id);
+        bookmark.isDisplayDetailed = !bookmark.isDisplayDetailed;
+    };
 
-    function updateError(error) {
-        this.error = error;
-    }
+    const findAndDelete = function (id) {
+        this.bookmarks = this.bookmarks.filter(bookmark => bookmark.id !== id);
+    };
 
-    function toggleBookmarkFullView(id) {
-        let book = findBookmarkById(id);
-        book.fullView = !book.fullView;
-    }
+    const setError = function (errorMessage) {
+        if (errorMessage === null) {
+            this.error = null;
+        } else {
+            this.error = errorMessage.message;
+        }
+    };
 
     return {
         bookmarks: [],
-        addingNew: false,
-        ratingFilter: 0,
+        isDisplayDetailed: false,
         error: null,
+        filterValue: '0',
 
+        setError,
         addBookmark,
-        toggleAddNew,
-        changeRatingFilter,
-        updateError,
+        findById,
+        findAndToggleDetailed,
         findAndDelete,
-        toggleBookmarkFullView,
-        findBookmarkById,
+
     };
-})();
+
+}());
